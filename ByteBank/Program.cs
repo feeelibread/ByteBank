@@ -2,11 +2,11 @@
 
 Console.WriteLine("Bem vindo a seu banco ByteBank!");
 
-Titular titular = new Titular();
-titular.nome = "Felipe Ferreira";
-titular.cpf = "12324884669";
-titular.profissao = "Desenvolvedor C# Junior";
+Cliente cliente = new Cliente();
+cliente.nome = "Felipe Ferreira";
+cliente.cpf = "12324884669";
+cliente.profissao = "Desenvolvedor C# Junior";
 
-Console.WriteLine(titular.nome);
+Console.WriteLine(cliente.nome);
 
 Console.ReadKey();

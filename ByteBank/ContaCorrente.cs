@@ -49,18 +49,18 @@ namespace ByteBank
             return true;
         }
 
-        public void DefinirSaldo(double saldo)
+        public double Saldo
         {
-            if(saldo < 0)
+            get
             {
-                return;
+                return saldo;
             }
-            this.saldo += saldo;
+
+            set
+            {
+                saldo = value;
+            }
         }
 
-        public double ObterSaldo()
-        {
-            return saldo;
-        }
     }
 }

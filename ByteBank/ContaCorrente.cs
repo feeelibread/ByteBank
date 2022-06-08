@@ -78,10 +78,22 @@ namespace ByteBank
             }
         }
 
+        public static int TotalDeContasCriadas { get; set; }
+
         public ContaCorrente(int numeroAgencia, string conta)
         {
             Conta = conta;
             NumeroAgencia = numeroAgencia;
+            TotalDeContasCriadas += 1;
+        }
+
+        public ContaCorrente(Cliente titular, string conta, int numeroAgencia, string nomeAgencia, double saldo)
+        {
+            Titular = titular;
+            Conta = conta;
+            NumeroAgencia = numeroAgencia;
+            NomeAgencia = nomeAgencia;
+            Saldo = saldo;
         }
 
         public bool Sacar(double valor)

@@ -5,6 +5,8 @@ namespace ByteBank
     public class ContaCorrente
     {
         public Cliente Titular { get; set; }
+        public static int TotalDeContasCriadas { get; private set; }
+        public static double TaxaOperacao { get; private set; }
 
         private string _conta;
         public string Conta
@@ -78,13 +80,15 @@ namespace ByteBank
             }
         }
 
-        public static int TotalDeContasCriadas { get; set; }
 
         public ContaCorrente(int numeroAgencia, string conta)
         {
             Conta = conta;
             NumeroAgencia = numeroAgencia;
-            TotalDeContasCriadas += 1;
+
+            TaxaOperacao = 30 / TotalDeContasCriadas;
+            TotalDeContasCriadas ++;
+            
         }
 
         public ContaCorrente(Cliente titular, string conta, int numeroAgencia, string nomeAgencia, double saldo)

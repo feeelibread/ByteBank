@@ -7,40 +7,8 @@ namespace ByteBank
         public Cliente Titular { get; set; }
         public static int TotalDeContasCriadas { get; private set; }
         public static double TaxaOperacao { get; private set; }
-
-        private string _conta;
-        public string Conta
-        {
-            get { return _conta; }
-            set
-            {
-                if (value == null)
-                {
-                    throw new Exception("Não é possível atribuir um valor nulo a conta");
-                }
-                else
-                {
-                    _conta = value;
-                }
-            }
-        }
-
-        private int _numeroAgencia;
-        public int NumeroAgencia
-        {
-            get { return _numeroAgencia; }
-            set
-            {
-                if (value <= 0)
-                {
-                    throw new Exception("O numero da agência não pode ser menor ou igual a 0");
-                }
-                else
-                {
-                    _numeroAgencia = value;
-                }
-            }
-        }
+        public int Conta { get; }
+        public int NumeroAgencia { get; }
 
         private string _nomeAgencia;
         public string NomeAgencia
@@ -74,24 +42,35 @@ namespace ByteBank
             {
                 if (_saldo < 0)
                 {
-                    return;
+                    throw new Exception("Saldo não pode possuir um valor menor que 0");
                 }
                 _saldo = value;
             }
         }
 
 
-        public ContaCorrente(int numeroAgencia, string conta)
+        public ContaCorrente(int numeroAgencia, int numeroConta)
         {
-            Conta = conta;
+            Conta = numeroConta;
             NumeroAgencia = numeroAgencia;
 
-            TaxaOperacao = 30 / TotalDeContasCriadas;
+            //TaxaOperacao = 30 / TotalDeContasCriadas;
+
+            if (numeroConta <= 0)
+            {
+                throw new ArgumentException("O numero da conta não pode ser menor ou igual a 0", nameof(numeroConta));
+            }
+            if (numeroAgencia <= 0)
+            {
+                throw new ArgumentException("O numero da agência não pode ser menor ou igual a 0", nameof(numeroAgencia));
+            }
+
+
             TotalDeContasCriadas ++;
             
         }
 
-        public ContaCorrente(Cliente titular, string conta, int numeroAgencia, string nomeAgencia, double saldo)
+        public ContaCorrente(Cliente titular, int conta, int numeroAgencia, string nomeAgencia, double saldo)
         {
             Titular = titular;
             Conta = conta;
